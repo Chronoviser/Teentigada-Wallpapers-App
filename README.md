@@ -1,6 +1,6 @@
 # teentigada
 
-A new Flutter application.
+A WallPaper Viewing and Downloading app.
 
 ## Getting Started
 

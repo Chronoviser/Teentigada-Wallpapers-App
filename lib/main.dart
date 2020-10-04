@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,8 +15,7 @@ class myApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-            primaryColor: Colors.blue, accentColor: Colors.blueAccent),
+        theme: ThemeData(primaryColor: Colors.black, accentColor: Colors.black),
         home: Home());
   }
 }
@@ -33,7 +33,6 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     subscription = collectionReference.snapshots().listen((value) {
       setState(() {
@@ -44,7 +43,6 @@ class _HomeState extends State<Home> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     subscription?.cancel();
     super.dispose();
   }
@@ -71,8 +69,6 @@ class _HomeState extends State<Home> {
           ),
           body: wallpapersList == null
               ? Container()
-
-              ///TODO : Add a loading widget here
               : StaggeredGridView.countBuilder(
                   padding: EdgeInsets.all(4.0),
                   crossAxisCount: 4,
@@ -92,10 +88,13 @@ class _HomeState extends State<Home> {
                         },
                         child: Hero(
                           tag: imageURL,
-                          child: FadeInImage(
-                            image: NetworkImage(imageURL),
+                          child: CachedNetworkImage(
                             fit: BoxFit.cover,
-                            placeholder: AssetImage('assets/ripple.gif'),
+                            imageUrl: imageURL,
+                            placeholder: (context, imageUrl) => Image.asset(
+                              'assets/ripple.gif',
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),

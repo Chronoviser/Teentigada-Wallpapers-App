@@ -1,11 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'dart:io';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'dart:typed_data';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import "package:fluttertoast/fluttertoast.dart";
 
 class Fullscreen extends StatefulWidget {
   final String imageURL;
@@ -23,7 +23,6 @@ class _FullscreenState extends State<Fullscreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
@@ -60,7 +59,11 @@ class _FullscreenState extends State<Fullscreen> {
                   child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height,
-                      child: Image.network(widget.imageURL, fit: BoxFit.cover)),
+                      child: CachedNetworkImage(
+                        imageUrl: widget.imageURL,
+                        fit: BoxFit.cover,
+                      )
+                      /*Image.network(widget.imageURL, fit: BoxFit.cover)*/),
                 ),
                 Container(
                     width: MediaQuery.of(context).size.width,
