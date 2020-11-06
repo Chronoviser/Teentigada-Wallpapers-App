@@ -8,4 +8,4 @@
 4. Lightweight app
 5. No adds
 
-Credits to: Team Teentigada (Bhavin Bhanushali, Sameeksha Sud, Vishal Pandey)
+> Credits to: Team Teentigada (Bhavin Bhanushali, Sameeksha Sud, Vishal Pandey)
